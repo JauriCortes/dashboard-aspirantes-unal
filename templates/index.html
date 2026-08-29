@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard Aspirantes UNAL</title>
+    <style>
+        body { font-family: Calibri, sans-serif; margin: 40px; color: #2D2D2D; }
+        h1 { color: #466B3F; }
+        h2 { color: #565A5C; }
+        .stats { display: flex; gap: 40px; margin: 20px 0; }
+        .stat-box { background: #E8EFE7; padding: 20px; border-radius: 8px; text-align: center; }
+        .stat-box h3 { margin: 0; color: #466B3F; font-size: 32px; }
+        .stat-box p { margin: 5px 0 0; color: #565A5C; }
+        .grafica { margin: 30px 0; }
+        .grafica img { max-width: 100%; border: 1px solid #AFB1B2; border-radius: 4px; }
+        .tabla { border-collapse: collapse; margin: 20px 0; }
+        .tabla th { background: #466B3F; color: white; padding: 8px 12px; }
+        .tabla td { border: 1px solid #AFB1B2; padding: 8px 12px; }
+        .tabla tr:nth-child(even) { background: #E8EFE7; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard de Aspirantes y Admitidos — Universidad Nacional de Colombia</h1>
+    <p>Datos del período 2019-1 a 2023-2</p>
+
+    <div class="stats">
+        <div class="stat-box">
+            <h3>{{ total_aspirantes }}</h3>
+            <p>Aspirantes totales</p>
+        </div>
+        <div class="stat-box">
+            <h3>{{ total_admitidos }}</h3>
+            <p>Admitidos totales</p>
+        </div>
+        <div class="stat-box">
+            <h3>{{ tasa_general }}%</h3>
+            <p>Tasa de admisión</p>
+        </div>
+    </div>
+
+    <h2>Aspirantes por período</h2>
+    {{ asp_periodo | safe }}
+
+    <h2>Tasa de admisión por sede</h2>
+    {{ tasa_sede | safe }}
+
+    <h2>Puntaje promedio por período</h2>
+    {{ puntaje_periodo | safe }}
+
+    <h2>Top 20 nacionalidades extranjeras — Admitidos</h2>
+    {{ nacionalidades | safe }}
+
+
+    <h2>Admitidos por estrato</h2>
+    <div class="grafica">
+        <img src="{{ url_for('static', filename='grafica_admitidos_estrato.png') }}">
+    </div>
+
+    <h2>Distribución de puntajes</h2>
+    <div class="grafica">
+        <img src="{{ url_for('static', filename='grafica_distribucion_puntaje.png') }}">
+    </div>
+
+    <h2>Edad vs. Puntaje</h2>
+    <div class="grafica">
+        <img src="{{ url_for('static', filename='grafica_edad_puntaje.png') }}">
+    </div>
+
+    <h2>Buzón de comentarios</h2>
+    <form method="POST">
+        <textarea name="comentario" rows="3" cols="60" placeholder="Escribe tu comentario sobre el proceso de admisión..."></textarea>
+        <br>
+        <button type="submit" style="background: #466B3F; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Analizar</button>
+    </form>
+
+    {% if resultado %}
+    <div style="background: #E8EFE7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #466B3F; margin-top: 0;">Resultado del análisis</h3>
+        <p><strong>Texto:</strong> {{ resultado.texto }}</p>
+        <p><strong>Sentimiento:</strong> {{ resultado.sentimiento }} ({{ resultado.score }})</p>
+        <p><strong>Entidades:</strong> {{ resultado.entidades }}</p>
+    </div>
+    {% endif %}
+
+    {% if total_comentarios > 0 %}
+    <div style="background: #F5F5F5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #565A5C; margin-top: 0;">Resumen acumulado ({{ total_comentarios }} comentarios)</h3>
+        <p>Positivos: {{ resumen.get('POS', 0) }}</p>
+        <p>Negativos: {{ resumen.get('NEG', 0) }}</p>
+        <p>Neutros: {{ resumen.get('NEU', 0) }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Entorno virtual
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Dataset completo (68 MB) — se regenera con hito_1_extraccion.ipynb
+aspirantes_unal.csv
+
+# Base de datos de comentarios (la crea app.py al arrancar)
+dashboard.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Caché de modelos de HuggingFace
+.cache/
+
+# Borrador de exploracion (duplica el hito 2)
+procrastinandoAndo.ipynb
