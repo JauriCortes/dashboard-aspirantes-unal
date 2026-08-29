@@ -74,6 +74,14 @@ notebook, que lo descarga desde la API:
 jupyter notebook hito_1_extraccion.ipynb   # genera aspirantes_unal.csv
 ```
 
+El segundo notebook limpia el dataset y recalcula las estadísticas y las gráficas. Los
+resultados ya están versionados, así que este paso es opcional para solo levantar el
+dashboard, pero es donde está el análisis:
+
+```bash
+jupyter notebook hito_2_limpieza_analisis.ipynb   # genera stats_*.csv y static/*.png
+```
+
 Con el CSV en su lugar, arranca el dashboard:
 
 ```bash
