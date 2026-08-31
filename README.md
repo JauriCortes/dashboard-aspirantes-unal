@@ -18,6 +18,28 @@ Los datos provienen del portal de datos abiertos del Estado colombiano
 - **Procesa** comentarios de usuarios con dos modelos de lenguaje: clasificación de
   sentimiento en español y extracción de entidades nombradas
 
+## El dashboard
+
+Portada con las cifras generales y las estadísticas agregadas que produce el hito 2:
+
+![Portada del dashboard](capturas/01_dashboard.png)
+
+Tasa de admisión por sede y evolución del puntaje por período. La brecha entre sedes es
+notable: Bogotá admite al 9,7 % de sus 334.943 aspirantes, mientras Palmira supera el 50 %.
+
+![Tablas de tasas por sede y puntajes](capturas/02_tablas.png)
+
+Gráficas generadas con matplotlib en el hito 2 y servidas como estáticos:
+
+![Distribución de puntajes](capturas/03_graficas.png)
+
+### Buzón con análisis de lenguaje
+
+El formulario captura un comentario, lo clasifica por sentimiento, le extrae las entidades
+nombradas y guarda el resultado en SQLite. El resumen acumulado se recalcula en cada envío:
+
+![Buzón de comentarios con el análisis de IA](capturas/04_buzon_ia.png)
+
 ## Resultados
 
 Sobre los 452.462 registros limpios (2019–2024, 9 sedes):
@@ -51,6 +73,7 @@ hito 2 y quedan guardadas en los CSV de estadísticas que consume el dashboard.
 ├── hito_1_extraccion.ipynb         # Descarga desde la API → aspirantes_unal.csv
 ├── hito_2_limpieza_analisis.ipynb  # Limpieza, estadísticas y gráficas
 ├── stats_*.csv                     # Estadísticas precalculadas que lee el dashboard
+├── capturas/                       # Capturas del dashboard en funcionamiento
 ├── static/                         # Gráficas generadas en el hito 2
 ├── templates/index.html            # Plantilla del dashboard
 └── requirements.txt
