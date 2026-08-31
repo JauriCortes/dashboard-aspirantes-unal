@@ -33,6 +33,19 @@ Gráficas generadas con matplotlib en el hito 2 y servidas como estáticos:
 
 ![Distribución de puntajes](capturas/03_graficas.png)
 
+### Edad, puntaje y admisión
+
+La misma grilla leída de dos formas: a la izquierda dónde se concentran los aspirantes,
+a la derecha qué proporción de cada celda queda admitida.
+
+![Edad y puntaje de los aspirantes](static/grafica_edad_puntaje.png)
+
+La frontera de admisión es **horizontal y sorprendentemente estable**: el puntaje donde la
+tasa cruza el 50 % está en 650 para los aspirantes de 15 a 17 años y en 625 para todos los
+demás grupos de edad, hasta los 35. Dicho de otro modo, el puntaje decide y la edad casi no
+mueve la aguja — la tasa global apenas sube del 14,7 % entre los de 15 a 17 años al 19,1 %
+entre los de 25 a 29.
+
 ### Buzón con análisis de lenguaje
 
 El formulario captura un comentario, lo clasifica por sentimiento, le extrae las entidades
